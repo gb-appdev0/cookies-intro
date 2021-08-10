@@ -19,7 +19,12 @@ class CalculationsController < ApplicationController
     @first_number = params.fetch("first_num").to_f
     @second_number = params.fetch("second_num").to_f
 
+    
+
+    @last = cookies.fetch(:most_recent_addition)
+
     @result = @first_number.to_f + @second_number.to_f
+    cookies.store(:most_recent_addition, @result)
 
     render({ :template => "calculation_templates/add_results.html.erb" })
   end
